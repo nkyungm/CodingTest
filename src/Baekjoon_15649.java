@@ -13,6 +13,7 @@ public class Baekjoon_15649 {
     private static void permutation(int n, int m, ArrayList<Integer> arr) {
         if(m==0){
             ArrayList<Integer> arr2=new ArrayList<Integer>();
+            //중복 제거
             for(int i=0; i<arr.size(); i++) {
                 if(!arr2.contains(arr.get(i)))
                     arr2.add(arr.get(i));
