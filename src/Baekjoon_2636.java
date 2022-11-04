@@ -1,7 +1,9 @@
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.*;
+import java.util.LinkedList;
+import java.util.Queue;
+import java.util.StringTokenizer;
 
 public class Baekjoon_2636 { //치즈 문제
     //cheeze, rangeX, rangeY,cnt 전역변수로 설정
@@ -33,7 +35,7 @@ public class Baekjoon_2636 { //치즈 문제
         int count=0; //치즈 모두 녹은 시간 변수
         while(true){ //무한 loop 돌림
             /*
-            while 조건에 cnt==0 넣지 않은 이유 
+            while 조건에 cnt==0 넣지 않은 이유
             * => 전역변수로 cnt=0으로 설정했기 때문에 바로 while문 종료됨
             * */
             bfs(0,0,row,col); //(0,0)부터 bfs 시작
@@ -44,7 +46,7 @@ public class Baekjoon_2636 { //치즈 문제
             }
             else{ //cnt!=0이면 아직 녹은 치즈가 있다는 의미 => while문 계속 반복
                 num=cnt; //bfs 함수에서 저장된 cnt(녹은 치즈 개수) num으로 옮겨줌
-                count++; //시간 하루 추가
+                count++; //시간 하루 추가한다.
             }
         }
 
