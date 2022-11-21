@@ -25,7 +25,6 @@ public class Baekjoon_9012 {
                         break;
                     }
                 }
-
             }
             if(check==true && cnt==0){
                 System.out.println("YES");
