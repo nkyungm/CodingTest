@@ -3,64 +3,59 @@ import java.io.InputStreamReader;
 import java.util.StringTokenizer;
 
 public class Baekjoon_14503 {
-    static int[][] paper;
-    static int wcnt=0;
-    static int bcnt=0;
+    static int cnt=0;
+    static int[][] arr;
+    static boolean[][] check;
+    static int N;
+    static int M;
     public static void main(String[] args) throws Exception{
         BufferedReader br=new BufferedReader(new InputStreamReader(System.in));
         StringTokenizer st = new StringTokenizer(br.readLine());
 
-        int N=Integer.parseInt(st.nextToken());
-        paper=new int[N][N];
+        N=Integer.parseInt(st.nextToken());
+        M=Integer.parseInt(st.nextToken());
+
+        st=new StringTokenizer(br.readLine()); //라인 건너뛰기
+
+        int r=Integer.parseInt(st.nextToken());
+        int c=Integer.parseInt(st.nextToken());
+        int d=Integer.parseInt(st.nextToken());
+        arr=new int[N][M];
+        check=new boolean[N][M];
 
         for(int i=0;i<N;i++) {
             st = new StringTokenizer(br.readLine());
-            for (int j = 0; j < N; j++) {
-                paper[i][j] = Integer.parseInt(st.nextToken()); //0 또는 1입력
-            }
-        }
-
-        colorpaper(0,0,N);
-        System.out.println(wcnt);
-        System.out.println(bcnt);
-
-    }
-
-    static boolean check(int row,int col,int size){
-        int wwcnt=0;
-        int bbcnt=0;
-        for(int i=row;i<row+size;i++){
-            for(int j=col;j<col+size;j++){
-                if(paper[i][j]==0){
-                    wwcnt++;
-                }else{
-                    bbcnt++;
-                }
-                if(wwcnt!=0 && bbcnt!=0){
-                    return false;
+            for (int j = 0; j < M; j++) {
+                arr[i][j] = Integer.parseInt(st.nextToken());
+                if(arr[i][j]==1){
+                    check[i][j]=true;
                 }
             }
         }
-        return true;
+        cnt++;
+        clean(r,c,d);
     }
+    static void clean(int r,int c,int d){
+        check[r][c]=true;
+        int[] x={-1,0,1,0};
+        int[] y={0,1,0,-1};
+        int a=(d+2)%4;
 
-    static void colorpaper(int row,int col,int size){
-        if(check(row, col, size)) {
-            if(paper[row][col] == 0) {
-                wcnt++;
+        for(int i=0;i<4;i++){
+            int left=(d+3-i)%4;
+            int next_x=r+x[left];
+            int next_y=c+y[left];
+            if(0<=next_x && next_x<=N && 0<=next_y && next_y<=M && check[next_x][next_y]==false){
+                cnt++;
+                clean(next_x,next_y,left);
             }
-            else {
-                bcnt++;
-            }
-            return;
         }
-
-        int newSize = size / 2;	// 절반 사이즈
-        // 재귀 호출
-        colorpaper(row, col, newSize);						// 2사분면
-        colorpaper(row, col + newSize, newSize);				// 1사분면
-        colorpaper(row + newSize, col, newSize);				// 3사분면
-        colorpaper(row + newSize, col + newSize, newSize);	// 4사분면
-
+        if(r+x[a]>=0 && r+x[a]<=N && 0<=c+y[a] && c+y[a]<=M && arr[r+x[a]][c+y[a]]!=1){
+            clean(r+x[a],c+y[a],d);
+        }else{
+            System.out.println(cnt);
+            System.exit(0);
+        }
     }
+
 }
