@@ -7,6 +7,7 @@ public class Baekjoon_14503 {
     static int[][] arr;
     static boolean[][] check;
     static int N;
+    //int[][] arr=new int [2][2];
     static int M;
     public static void main(String[] args) throws Exception{
         BufferedReader br=new BufferedReader(new InputStreamReader(System.in));
