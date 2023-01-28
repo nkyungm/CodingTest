@@ -7,8 +7,7 @@ public class Baekjoon_21608 {
     static int[][] like;
     static int N;
     static int[] rangeY = { -1, 0, 1, 0 }; //r
-    static int[] rangeX = { 0, 1, 0, -1 }; //c
-
+    static int[] rangeX = { 0, 1, 0, -1 };
     public static void main(String[] args) throws Exception{
 
         BufferedReader br=new BufferedReader(new InputStreamReader(System.in));
