@@ -13,7 +13,7 @@ public class Baekjoon_1213 {
         Arrays.sort(arr); //오름차순 정렬
         int j=0;
 
-        if(arr.length%2==0){ //짝수
+        if(arr.length%2==0){ //짝수!
             //모든 문자 짝수개인지 확인
             for(int i=0;i<arr.length-1;i=i+2){
                 if(arr[i]!=arr[i+1]){
